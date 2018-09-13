@@ -165,16 +165,14 @@ def printDatasetInfo( bucketName, objectName, hostName, printCols=True):
         onePerLine = True
         printColumnHeaders(bucketName, objectName, hostName, onePerLine)
         
-
-             
-        
 def testIndividualSelectCalls():
     #s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 10"
-    s = "select * from S3Object s limit 5"
+    s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000"
     printSelectExpression(s)
     
     h = "s3"
-    printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
+    #printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
+    printHostInfo(h)
     doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)
     print()
 
@@ -197,7 +195,7 @@ def iterateThroughTests(whichHosts):
 
     #optionally override quiet..
     #quiet = True
-    
+
     for s in TestSelectExpressions :
         printSelectExpression(s)
         
@@ -212,19 +210,26 @@ def iterateThroughTests(whichHosts):
                     print("ERROR: No host matching '", h, "' found is configured.", sep="")
     print()
     
-
-def processBySelectExpression(df, quiet):
+def processBySelectExpression(df, quiet, showGraphs):
     
     #optionally override quiet..
     quiet = False
     verbose = not quiet
+    
+    if not showGraphs :
+        if not quiet : print("supressing graphs...")
+        
+        #just return... don't do the work below to render the graphs
+        return()
+        
     
     selectionExpressions = df.get('expression').unique()
     for e in selectionExpressions :
         printSelectExpression(e)
         
         filtered = pd.DataFrame(df.loc[df['expression']==e])
-        if verbose : print(filtered.describe())
+        if verbose : 
+            print(filtered.describe())
         
         sns.set(style="ticks", palette="pastel")
         sns.boxplot(x=filtered.host, y=filtered.elapsedTimeSecs)
@@ -234,18 +239,31 @@ def processBySelectExpression(df, quiet):
         sns.swarmplot(x=filtered.host, y=filtered.elapsedTimeSecs)
         plt.pyplot.show()
         
+        sns.scatterplot(x=filtered.elapsedTimeSecs, 
+                        y=filtered.bytesProcessed,
+                        hue=filtered.host, 
+                        #size=filtered.bytesScanned,
+                        #sizes=(10, 200),
+                        legend='brief', 
+                        )
+       
+        
+        plt.pyplot.show()
+        
         del(filtered)
         
     
-def processMetrics(metrics, quiet):
+def processMetrics(metrics, quiet, showGraphs):
     
     #optionally override quiet..
-    #quiet = False
+    quiet = False
     verbose = not quiet
     
+    metricsDir = "./metrics/"
+    # for debugging code change baseFilename to 'dbg-timing-metrics'
     baseFilename = 'timing-metrics'
-    metricsFilename = baseFilename + '.csv'
-    saveFilename = baseFilename + "-save.csv"
+    metricsFilename = metricsDir + baseFilename + '.csv'
+    saveFilename = metricsDir + baseFilename + "-save.csv"
     
     dfNew = pd.DataFrame(metrics)
     if verbose : print(dfNew) 
@@ -257,7 +275,6 @@ def processMetrics(metrics, quiet):
         if verbose : print('concatenating new metrics...')
         frames = [dfOld, dfNew]
         dfCombined = pd.concat(frames, sort=True)
-        
         
         if os.path.exists(saveFilename) :
             if verbose : print('removing old metrics file...')
@@ -271,13 +288,13 @@ def processMetrics(metrics, quiet):
         dfCombined.to_csv(metricsFilename, index=False)
         
         if verbose : print('analysis of combined (new and saved) metric data...')
-        processBySelectExpression(dfCombined, quiet)
+        processBySelectExpression(dfCombined, quiet, showGraphs)
     else:
         #save metrics.csv
         dfNew.to_csv(metricsFilename, index=False)
         
         if verbose : print('analysis of new metric data...')
-        processBySelectExpression(dfNew, quiet)  
+        processBySelectExpression(dfNew, quiet, showGraphs) 
 
         
 #main    
@@ -294,11 +311,11 @@ if __name__ == "__main__" :
     hostDict = mc.getMinioHostInfo()
     
     #True to test individual select calls, False to skip
-    if False:
+    if True:
         testIndividualSelectCalls()
         
     #True to test all the select statemetns against all the hosts, False to skip
-    if True:
+    if False:
         whichHosts = [
                 's3', 
                 'play', 
@@ -307,7 +324,10 @@ if __name__ == "__main__" :
                 ]
         iterateThroughTests(whichHosts)
     
-    processMetrics( metrics, quiet)
+    showGraphs = False
+    processMetrics( metrics, quiet, showGraphs)
+    
+    print("All DONE!")
 
    
        

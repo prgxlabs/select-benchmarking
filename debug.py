@@ -6,7 +6,6 @@ Created on Sat Sep  8 02:18:20 2018
 """
 
 import random
-import time
 import datetime
 import pandas as pd
 import seaborn as sns
@@ -52,6 +51,17 @@ def processBySelectExpression(df, quiet):
         sns.swarmplot(x=filtered.host, y=filtered.elapsedTimeSecs)
         plt.pyplot.show()
         
+        sns.scatterplot(x=filtered.elapsedTimeSecs, 
+                        y=filtered.bytesProcessed,
+                        hue=filtered.host, 
+                        #size=filtered.bytesScanned,
+                        #sizes=(10, 200),
+                        legend='brief', 
+                        )
+       
+        
+        plt.pyplot.show()
+        
         del(filtered)
         
     
@@ -61,9 +71,10 @@ def processMetrics(metrics, quiet):
     quiet = False
     verbose = not quiet
     
+    metricsDir = "./metrics/"
     baseFilename = 'dbg-timing-metrics'
-    metricsFilename = baseFilename + '.csv'
-    saveFilename = baseFilename + "-save.csv"
+    metricsFilename = metricsDir + baseFilename + '.csv'
+    saveFilename = metricsDir + baseFilename + "-save.csv"
     
     dfNew = pd.DataFrame(metrics)
     if verbose : print(dfNew) 

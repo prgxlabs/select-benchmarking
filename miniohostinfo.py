@@ -5,17 +5,10 @@ Spyder Editor
 This is a temporary script file.
 """
 
-
-#!/usr/bin/env/env python3
-#import boto3
-#import datetime
 import json
 import subprocess
-#import os
 import pprint
 from collections import defaultdict
-
-
 
 def getMinioHostInfo():
     debug = 0
