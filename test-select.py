@@ -127,6 +127,58 @@ def doSelect(bucketName, objectName, hostName, selectExpression, quiet):
                     })
         
 
+    
+def doSelectShowPayload(bucketName, objectName, hostName, selectExpression):
+    
+    #startTime = datetime.datetime.now()
+    
+    #setup client, use mc.finctions to look up URL, accessKey, and secretKey
+    s3 = boto3.client('s3',
+                      endpoint_url=mc.getURL(hostName, hostDict),
+                      aws_access_key_id=mc.getAccessKey(hostName, hostDict),
+                      aws_secret_access_key=mc.getSecretKey(hostName, hostDict),
+                      region_name='us-east-1')
+        
+    
+    #make the select_object_content call... returns a stream
+    #TODO: assumes dataset is CSV and is not compressed... should relax this
+    eventStream = s3.select_object_content(
+                            Bucket=bucketName,
+                            Key=objectName,
+                            ExpressionType='SQL',
+                            Expression=selectExpression,
+                            InputSerialization={
+                                                'CSV': {
+                                                        "FileHeaderInfo": "USE",
+                                                        },
+                                                'CompressionType': 'NONE',
+                                                },
+                            OutputSerialization={'CSV': {}},
+                            )
+    
+    #iterate through the response (eventStream)
+    for event in eventStream['Payload']:
+        #debugging code - totally messes up output
+        #print(event)
+        if 'Records' in event:
+            record = event['Records']['Payload'].decode('utf-8')
+            print(record)
+        elif 'Stats' in event:
+            statsDetails = event['Stats']['Details']
+            bs = statsDetails['BytesScanned']
+            bp = statsDetails['BytesProcessed']
+            
+            print("Stats details bytesScanned: ", bs)
+            print("Stats details bytesProcessed: ", bp)
+                
+    #if quiet: 
+    #    print("**DONE - (Output not echoed!)**")
+        
+    #endTime = datetime.datetime.now() 
+    #elapsedTime = printElapsedTime(startTime, endTime, quiet)
+    #elapsedTimeSecs = datetime.timedelta.total_seconds(elapsedTime)
+    
+        
 #various print functions for fomatted output
 
 def printElapsedTime( startTime, endTime, quiet):
@@ -166,10 +218,11 @@ def printDatasetInfo( bucketName, objectName, hostName, printCols=True):
         printColumnHeaders(bucketName, objectName, hostName, onePerLine)
         
 def testIndividualSelectCalls():
-    #s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 10"
-    s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000"
+    s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 10"
+    #s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000"
     printSelectExpression(s)
     
+    quiet = False
     h = "s3"
     #printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
     printHostInfo(h)
@@ -296,6 +349,24 @@ def processMetrics(metrics, quiet, showGraphs):
         if verbose : print('analysis of new metric data...')
         processBySelectExpression(dfNew, quiet, showGraphs) 
 
+
+def showHarshaPayloadBug():
+    
+    s = "select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10"
+    printSelectExpression(s)
+    
+    h = "s3"
+    #printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
+    printHostInfo(h)
+    doSelectShowPayload( "sjm-airlines", "DelayedFlights.csv", h, s)
+    print()
+    
+    h = "play"
+    #printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
+    printHostInfo(h)
+    doSelectShowPayload( "sjm-airlines", "DelayedFlights.csv", h, s)
+    print()
+    
         
 #main    
 if __name__ == "__main__" :
@@ -311,7 +382,7 @@ if __name__ == "__main__" :
     hostDict = mc.getMinioHostInfo()
     
     #True to test individual select calls, False to skip
-    if True:
+    if False:
         testIndividualSelectCalls()
         
     #True to test all the select statemetns against all the hosts, False to skip
@@ -324,8 +395,12 @@ if __name__ == "__main__" :
                 ]
         iterateThroughTests(whichHosts)
     
-    showGraphs = False
-    processMetrics( metrics, quiet, showGraphs)
+        showGraphs = False
+        processMetrics( metrics, quiet, showGraphs)
+        
+    if True :
+        showHarshaPayloadBug()
+       
     
     print("All DONE!")
 
