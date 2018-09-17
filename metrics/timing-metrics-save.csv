@@ -1,0 +1,185 @@
+bucket,bytesProcessed,bytesScanned,elapsedTimeDays,elapsedTimeSecs,expression,host,object
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:05.088580000,5.08858,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.443465000,45.443465,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:16.660333000,16.660332999999998,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.903296000,13.903296,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23094709.0,23102809.0,0 days 00:00:00.855456000,0.855456,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.766191000,7.766191,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.778020000,2.77802,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:02.450712000,2.450712,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:04.396100000,4.3961,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.627952000,57.627952,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:16.436819000,16.436819,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:15.601995000,15.601995,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:00.659859000,0.659859,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.651495000,57.651495,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.418783000,18.418782999999998,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.863733000,13.863732999999998,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:00.823635000,0.823635,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.892811000,0.892811,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.334611000,2.334611,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:01.627059000,1.627059,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,206401.0,0 days 00:00:00.630329000,0.630329,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.232966000,0.23296599999999998,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.843599000,0.843599,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.328864000,0.328864,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.894106,3.894106,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.384866,45.384866,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:19.196764,19.196764,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.719866,13.719866,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23094709.0,23102809.0,0 days 00:00:00.901264,0.901264,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.772009,7.772009,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.153936,3.153936,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:01.964001,1.964001,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.832121,3.832121,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.582697,57.582697,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:19.659674,19.659674,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.943887,13.943887,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:00.649722,0.649722,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.755899,57.755899,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.343795,18.343795,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.289168,13.289168,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:01.003801,1.003801,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.819213,0.819213,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.303471,2.303471,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:01.656286,1.656286,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:04.733204,4.733204,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.219899,0.219899,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.963506,0.963506,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.325906,0.325906,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.281697,3.2816970000000003,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.264992,45.264992,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:15.153371,15.153371,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.704066,11.704066000000001,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23094709.0,23102809.0,0 days 00:00:00.813258,0.813258,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.773543,7.773542999999999,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.659307,2.659307,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:02.334372,2.334372,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.488234,3.488234,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.603788,57.603788,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:17.969836,17.969835999999994,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.014080,13.01408,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:00.533998,0.533998,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.458726,57.458726,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.635938,18.635938,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:14.572933,14.572932999999999,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:01.700157,1.700157,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.854309,0.854309,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.286019,2.286019,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:01.833694,1.833694,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:00.623416,0.623416,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.225822,0.22582199999999997,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.847529,0.8475290000000001,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.361868,0.36186799999999997,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:04.944840,4.94484,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.231367,45.231367,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.997238,18.997238,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.038301,11.038300999999999,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23094709.0,23102809.0,0 days 00:00:01.032992,1.032992,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.712056,7.712056,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.707915,2.7079150000000003,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:02.087876,2.0878759999999996,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.786736,3.786736,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.386691,57.386691000000006,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.802967,18.802967000000002,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.769185,11.769185,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:00.684088,0.684088,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.307790,57.307790000000004,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:17.445755,17.445755,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.862250,11.86225,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:00.936633,0.9366329999999999,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.844185,0.8441850000000001,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.956491,3.956491,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:03.754526,3.7545260000000003,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:00.636390,0.63639,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.234010,0.23401,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.865810,0.8658100000000001,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.330855,0.330855,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:04.272100,4.2721,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.215978,45.215978,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:14.166055,14.166054999999998,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.661238,11.661238,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23094709.0,23102809.0,0 days 00:00:00.994054,0.994054,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.718836,7.718836,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.673722,2.673722,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:02.472071,2.472071,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:04.152765,4.1527650000000005,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.325552,57.325552,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.625098,18.625098,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.460772,13.460772,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:00.645475,0.645475,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.580945,57.58094499999999,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:19.506048,19.506048,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:12.861145,12.861145,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:00.820240,0.82024,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:01.054959,1.054959,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.237021,2.237021,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:04.548459,4.5484589999999985,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:00.696800,0.6968,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.235399,0.235399,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.869927,0.869927,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.322411,0.322411,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:06.284176,6.284176,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.074113,45.074113,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:16.840707,16.840707000000002,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.690986,11.690986,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23094709.0,23102809.0,0 days 00:00:00.862420,0.8624200000000001,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.788305,7.788305,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.810898,2.810898,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:02.309633,2.3096330000000003,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.457086,3.457086,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.263951,57.263951,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:16.590450,16.59045,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:12.281442,12.281442,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:00.638754,0.638754,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.252513,57.252513,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:15.755042,15.755042000000001,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:12.673734,12.673734,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:00.807889,0.8078890000000001,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.852975,0.852975,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.835949,2.8359490000000003,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:01.994432,1.994432,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,206401.0,0 days 00:00:00.691041,0.691041,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.226095,0.226095,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.832420,0.83242,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.316434,0.316434,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:04.544529,4.544529,select count(*) from S3Object s where s.UniqueCarrier = 'WN',s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:45.196134,45.196134,select count(*) from S3Object s where s.UniqueCarrier = 'WN',play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:17.622519,17.622519,select count(*) from S3Object s where s.UniqueCarrier = 'WN',m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:11.505343,11.505343,select count(*) from S3Object s where s.UniqueCarrier = 'WN',z0,DelayedFlights.csv
+sjm-airlines,23036453.0,23094672.0,0 days 00:00:00.952199,0.952199,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:07.749426,7.749426,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.740332,2.740332,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:02.206017,2.206017,select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:03.558039,3.558039,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.602256,57.602256,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:18.040739,18.040739,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:13.316977,13.316977,select count(*) from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' ,z0,DelayedFlights.csv
+sjm-airlines,398295.0,406321.0,0 days 00:00:01.687167,1.687167,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:57.351520,57.35152,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:19.523043,19.523043,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:15.726739,15.726739000000002,"select s.Origin , s.WeatherDelay from S3Object s where s.UniqueCarrier = 'WN' and s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 50",z0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:00.869917,0.869917,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.863887,0.8638870000000001,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.535010,2.53501,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:01.845850,1.84585,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:00.628492,0.628492,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.238849,0.238849,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,play,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.823883,0.823883,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,m0,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.323232,0.323232,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit  10,z0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:00.738578,0.738578,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.257907,0.257907,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,play,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.349497,0.349497,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.944023,0.944023,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,m0,DelayedFlights.csv
+sjm-airlines,199103.0,206401.0,0 days 00:00:00.784962,0.7849619999999999,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.273452,0.273452,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,play,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.532574,0.532574,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.957687,0.957687,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,m0,DelayedFlights.csv
+sjm-airlines,199103.0,207229.0,0 days 00:00:00.599894,0.5998939999999999,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.276475,0.276475,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,play,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:00.512316,0.512316,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:01.044466,1.044466,select * from S3Object s where s.Origin = 'SMF' AND s.UniqueCarrier = 'WN'  limit 10,m0,DelayedFlights.csv
+sjm-airlines,13737386.0,13745485.0,0 days 00:00:00.817881,0.817881,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,s3,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:00.996207,0.996207,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,play,DelayedFlights.csv
+airlines,247963212.0,247963212.0,0 days 00:00:04.245588,4.245588,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,z0,DelayedFlights.csv
+sjm-airlines,247963212.0,247963212.0,0 days 00:00:02.397535,2.397535,select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000,m0,DelayedFlights.csv
