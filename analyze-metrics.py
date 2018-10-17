@@ -35,6 +35,10 @@ def processBySelectExpression(df, quiet, showGraphs):
     #optionally override quiet..
     quiet = False
     verbose = not quiet   
+    #mediumSize = (8,6)
+    largeSize = (20,16)
+    
+    sns.set(style="ticks", palette="pastel")
     
     selectionExpressions = df.get('expression').unique()
     for e in selectionExpressions :
@@ -44,26 +48,30 @@ def processBySelectExpression(df, quiet, showGraphs):
         if verbose : 
             print(filtered.describe())
         
-        
         sns.set(style="ticks", palette="pastel")
         sns.boxplot(x=filtered.host, y=filtered.elapsedTimeSecs)
+        #plt.pyplot.subplots(figsize=largeSize)
         plt.pyplot.show()
         
         sns.set(style="ticks", palette="pastel")
         sns.swarmplot(x=filtered.host, y=filtered.elapsedTimeSecs)
+        #plt.pyplot.subplots(figsize=largeSize)
         plt.pyplot.show()
         
-        sns.scatterplot(x=filtered.bytesProcessed,
-                        y=filtered.elapsedTimeSecs, 
+        sns.scatterplot(x=filtered.elapsedTimeSecs, 
+                        y=filtered.bytesProcessed,
                         hue=filtered.host, 
-                        size=filtered.bytesScanned,
-                        sizes=(10, 200),
-                        #legend='brief', 
-                        legend=False,
+                        #size=filtered.bytesScanned,
+                        #sizes=(10, 200),
+                        legend='brief', 
                         )
+       
+        
+        #plt.pyplot.subplots(figsize=largeSize)
         plt.pyplot.show()
         
         del(filtered)
+        
         
     
 def processMetricsFile(quiet, showGraphs):
@@ -74,7 +82,7 @@ def processMetricsFile(quiet, showGraphs):
     
     metricsDir = "./metrics/"
     # for debugging code change baseFilename to 'dbg-timing-metrics'
-    baseFilename = 'timing-metrics'
+    baseFilename = 'master-timing'
     metricsFilename = metricsDir + baseFilename + '.csv'
     #saveFilename = metricsDir + baseFilename + "-save.csv"
 

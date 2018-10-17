@@ -13,6 +13,8 @@ import pandas as pd
 import seaborn as sns
 import os
 import matplotlib as plt
+import sqlparse
+
 #from collections import defaultdict
 #import time
 
@@ -21,6 +23,7 @@ TestDatasets = [
         { 'host': 's3', 'bucket': 'sjm-airlines', 'object': 'DelayedFlights.csv' },
         { 'host': 'play', 'bucket': 'sjm-airlines', 'object': 'DelayedFlights.csv'},
         { 'host': 'm0', 'bucket': 'sjm-airlines', 'object': 'DelayedFlights.csv' },
+        { 'host': 'm3', 'bucket': 'sjm-airlines', 'object': 'DelayedFlights.csv' },
         { 'host': 'z0', 'bucket': 'airlines', 'object': 'DelayedFlights.csv' },
              ]
 
@@ -159,10 +162,10 @@ def doSelectShowPayload(bucketName, objectName, hostName, selectExpression):
     #iterate through the response (eventStream)
     for event in eventStream['Payload']:
         #debugging code - totally messes up output
-        #print(event)
+        print(event)
         if 'Records' in event:
             record = event['Records']['Payload'].decode('utf-8')
-            print(record)
+            #print(record, end="")
         elif 'Stats' in event:
             statsDetails = event['Stats']['Details']
             bs = statsDetails['BytesScanned']
@@ -192,9 +195,13 @@ def printElapsedTime( startTime, endTime, quiet):
     return(elapsedTime)
     
 def printSelectExpression(selectExpression):
-    dashes = "-" * len(selectExpression)
-    print(dashes)
-    print(selectExpression)
+    
+    #n = len(selectExpression)
+    n= 60
+    dashes = "-" * n
+    
+    print(len(dashes), dashes)
+    print(sqlparse.format(selectExpression,reindent=True, keyword_case='upper'))
     print(dashes)
     
 def printHostInfo( hostName):
@@ -218,7 +225,8 @@ def printDatasetInfo( bucketName, objectName, hostName, printCols=True):
         printColumnHeaders(bucketName, objectName, hostName, onePerLine)
         
 def testIndividualSelectCalls():
-    s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 10"
+    #s = "select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10"
+    s = "select count(*) from S3Object s where s.WeatherDelay <> '0' and s.WeatherDelay <> ''"
     #s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000"
     printSelectExpression(s)
     
@@ -297,7 +305,7 @@ def processBySelectExpression(df, quiet, showGraphs):
                         hue=filtered.host, 
                         #size=filtered.bytesScanned,
                         #sizes=(10, 200),
-                        legend='brief', 
+                        legend=False, 
                         )
        
         
@@ -352,7 +360,7 @@ def processMetrics(metrics, quiet, showGraphs):
 
 def showHarshaPayloadBug():
     
-    s = "select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10"
+    s = "select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit 100"
     printSelectExpression(s)
     
     h = "s3"
@@ -382,8 +390,11 @@ if __name__ == "__main__" :
     hostDict = mc.getMinioHostInfo()
     
     #True to test individual select calls, False to skip
-    if False:
+    if True:
         testIndividualSelectCalls()
+        
+        #showGraphs = True
+        #processMetrics( metrics, quiet, showGraphs)
         
     #True to test all the select statemetns against all the hosts, False to skip
     if False:
@@ -395,10 +406,10 @@ if __name__ == "__main__" :
                 ]
         iterateThroughTests(whichHosts)
     
-        showGraphs = False
+        showGraphs = True
         processMetrics( metrics, quiet, showGraphs)
         
-    if True :
+    if False :
         showHarshaPayloadBug()
        
     
