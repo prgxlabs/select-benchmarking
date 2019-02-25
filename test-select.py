@@ -51,11 +51,16 @@ def lookupObjectName(hostName):
     
 def getColumntHeaders(bucketName, objectName, hostName, delim=","):
     
-    #setup client, use mc.finctions to look up URL, accessKey, and secretKey
+    endpoint = mc.getMinioHostInfo().getURL(hostName)
+    secureFlag = ("https://" in endpoint)
+    print(secureFlag)
+    
+    #setup client, use mc.getMinioHostInfo().finctions to look up URL, accessKey, and secretKey
     s3 = boto3.resource('s3',
-                          endpoint_url=mc.getURL(hostName, hostDict),
-                          aws_access_key_id=mc.getAccessKey(hostName, hostDict),
-                          aws_secret_access_key=mc.getSecretKey(hostName, hostDict)
+                          endpoint_url=endpoint,
+                          aws_access_key_id=mc.getMinioHostInfo().getAccessKey(hostName),
+                          aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName),
+                          is_secure=securFlag
                         )
     #setup object (o) based on bucketName and objectName
     o = s3.Object(bucketName, objectName)
@@ -72,11 +77,16 @@ def doSelect(bucketName, objectName, hostName, selectExpression, quiet):
     
     startTime = datetime.datetime.now()
     
-    #setup client, use mc.finctions to look up URL, accessKey, and secretKey
+    endpoint = mc.getMinioHostInfo().getURL(hostName)
+    secureFlag = ("https://" in endpoint)
+    print(secureFlag)
+    
+    #setup client, use mc.getMinioHostInfo().finctions to look up URL, accessKey, and secretKey
     s3 = boto3.client('s3',
-                      endpoint_url=mc.getURL(hostName, hostDict),
-                      aws_access_key_id=mc.getAccessKey(hostName, hostDict),
-                      aws_secret_access_key=mc.getSecretKey(hostName, hostDict),
+                      endpoint_url=endpoint,
+                      aws_access_key_id=mc.getMinioHostInfo().getAccessKey(hostName),
+                      aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName),
+                      is_secure=secureFlag,
                       region_name='us-east-1')
         
     
@@ -103,7 +113,7 @@ def doSelect(bucketName, objectName, hostName, selectExpression, quiet):
         if 'Records' in event:
             record = event['Records']['Payload'].decode('utf-8')
             if not quiet :
-                print(record)
+                print(record, end="")
         elif 'Stats' in event:
             statsDetails = event['Stats']['Details']
             bs = statsDetails['BytesScanned']
@@ -135,11 +145,11 @@ def doSelectShowPayload(bucketName, objectName, hostName, selectExpression):
     
     #startTime = datetime.datetime.now()
     
-    #setup client, use mc.finctions to look up URL, accessKey, and secretKey
+    #setup client, use mc.getMinioHostInfo().finctions to look up URL, accessKey, and secretKey
     s3 = boto3.client('s3',
-                      endpoint_url=mc.getURL(hostName, hostDict),
-                      aws_access_key_id=mc.getAccessKey(hostName, hostDict),
-                      aws_secret_access_key=mc.getSecretKey(hostName, hostDict),
+                      endpoint_url=mc.getMinioHostInfo().getURL(hostName),
+                      aws_access_key_id=mc.getMinioHostInfo().getAccessKey(hostName),
+                      aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName),
                       region_name='us-east-1')
         
     
@@ -165,7 +175,7 @@ def doSelectShowPayload(bucketName, objectName, hostName, selectExpression):
         print(event)
         if 'Records' in event:
             record = event['Records']['Payload'].decode('utf-8')
-            #print(record, end="")
+            print(record, end="")
         elif 'Stats' in event:
             statsDetails = event['Stats']['Details']
             bs = statsDetails['BytesScanned']
@@ -200,12 +210,12 @@ def printSelectExpression(selectExpression):
     n= 60
     dashes = "-" * n
     
-    print(len(dashes), dashes)
+    print(dashes)
     print(sqlparse.format(selectExpression,reindent=True, keyword_case='upper'))
     print(dashes)
     
 def printHostInfo( hostName):
-    print("Host '", hostName, "' (", mc.getURL(hostName, hostDict), ")", sep="" )
+    print("Host '", hostName, "' (", mc.getMinioHostInfo().getURL(hostName), ")", sep="" )
 
 def printColumnHeaders(bucketName, objectName, hostName, onePerLine=False):
     columnHeaders = getColumntHeaders(bucketName, objectName, hostName) 
@@ -225,31 +235,62 @@ def printDatasetInfo( bucketName, objectName, hostName, printCols=True):
         printColumnHeaders(bucketName, objectName, hostName, onePerLine)
         
 def testIndividualSelectCalls():
-    #s = "select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10"
-    s = "select count(*) from S3Object s where s.WeatherDelay <> '0' and s.WeatherDelay <> ''"
+    s = "select * from S3Object s where s.Origin = 'SMF' AND s.Dest = 'ATL' limit  10"
+    #s = "select count(*) from S3Object s where s.WeatherDelay <> '0' and s.WeatherDelay <> ''"
     #s = "select s.UniqueCarrier from S3Object s where s.WeatherDelay <> '0.0' and s.WeatherDelay <> '' limit 5000"
     printSelectExpression(s)
     
     quiet = False
-    h = "s3"
-    #printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
-    printHostInfo(h)
-    doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)
-    print()
+    skipS3 = True
+    if not skipS3 :
+        h = "s3"
+        #printDatasetInfo("sjm-airlines", "DelayedFlights.csv", h)
+        printHostInfo(h)
+        doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)
+        print()
 
-    h = "play"
-    printHostInfo(h)
-    doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)
-    print()
+    skipPlay = True
+    if not skipPlay :
+        h = "play"
+        printHostInfo(h)
+        doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)
+        print()
                    
-    h = "z0"
-    printHostInfo(h)
-    doSelect( "airlines", "DelayedFlights.csv", h, s, quiet)
-    print()
+    skipZ0 = True
+    if not skipZ0 :
+        h = "z0"
+        printHostInfo(h)
+        doSelect( "airlines", "DelayedFlights.csv", h, s, quiet)
+        print()
     
-    h = "m0"
-    printHostInfo(h)
-    doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)    
+    skipM0 = True
+    if not skipM0 : 
+        h = "m0"
+        printHostInfo(h)
+        doSelect( "sjm-airlines", "DelayedFlights.csv", h, s, quiet)  
+        print()
+        
+    skipC0 = True
+    if not skipC0 :
+        h = "c0"
+        printHostInfo(h)
+        doSelect( "badscooter", "DelayedFlights.csv", h, s, quiet)
+        print()
+        
+    skipC1 = True
+    if not skipC1 :
+        h = "c1"
+        printHostInfo(h)
+        doSelect( "airlines", "DelayedFlights.csv", h, s, quiet)
+        print()
+        
+    skipC2 = False
+    if not skipC2 :
+        h = "c2"
+        printHostInfo(h)
+        doSelect( "airlines", "DelayedFlights.csv", h, s, quiet)
+        print()
+        
     print()
                 
 def iterateThroughTests(whichHosts):
@@ -263,7 +304,7 @@ def iterateThroughTests(whichHosts):
         for t in TestDatasets :
             h = t['host']
             if h in whichHosts:
-                alias = mc.getAlias(h, hostDict)
+                alias = mc.getMinioHostInfo().getAlias(h)
                 if alias != "": 
                     print(">>> Querrying '", h, "'...", sep="")
                     doSelect( t['bucket'], t['object'], h, s, quiet)
@@ -385,9 +426,9 @@ if __name__ == "__main__" :
     
     metrics = list()
     
-    #create dictionary of information about hosts configured in minio client (mc) config file. 
-    #dictionary will cotain all info (url, accessKey, secretKey) etc
-    hostDict = mc.getMinioHostInfo()
+    #initialize the getMinioHostInfo() class
+    mc.getMinioHostInfo()
+    
     
     #True to test individual select calls, False to skip
     if True:
@@ -399,10 +440,7 @@ if __name__ == "__main__" :
     #True to test all the select statemetns against all the hosts, False to skip
     if False:
         whichHosts = [
-                's3', 
-                'play', 
-                'm0',
-                'z0'
+                'c1'
                 ]
         iterateThroughTests(whichHosts)
     
