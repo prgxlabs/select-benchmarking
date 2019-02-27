@@ -21,6 +21,7 @@ class getMinioHostInfo:
         
         self.hostDict = defaultdict(list)
         lines = p.stdout.decode('utf-8').split('\n')
+        print(lines)
         for line in lines:
             if debug >= 3: 
                 print(">>>line")

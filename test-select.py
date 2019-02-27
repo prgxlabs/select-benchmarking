@@ -13,7 +13,8 @@ import pandas as pd
 import seaborn as sns
 import os
 import matplotlib as plt
-import sqlparse
+import sqlparse#
+#import os
 
 #from collections import defaultdict
 #import time
@@ -59,8 +60,8 @@ def getColumntHeaders(bucketName, objectName, hostName, delim=","):
     s3 = boto3.resource('s3',
                           endpoint_url=endpoint,
                           aws_access_key_id=mc.getMinioHostInfo().getAccessKey(hostName),
-                          aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName),
-                          is_secure=securFlag
+                          aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName)
+                      #    is_secure=secureFlag
                         )
     #setup object (o) based on bucketName and objectName
     o = s3.Object(bucketName, objectName)
@@ -86,7 +87,8 @@ def doSelect(bucketName, objectName, hostName, selectExpression, quiet):
                       endpoint_url=endpoint,
                       aws_access_key_id=mc.getMinioHostInfo().getAccessKey(hostName),
                       aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName),
-                      is_secure=secureFlag,
+                      #is_secure=secureFlag,
+                      verify=False,
                       region_name='us-east-1')
         
     
@@ -277,14 +279,14 @@ def testIndividualSelectCalls():
         doSelect( "badscooter", "DelayedFlights.csv", h, s, quiet)
         print()
         
-    skipC1 = True
+    skipC1 = False
     if not skipC1 :
         h = "c1"
         printHostInfo(h)
         doSelect( "airlines", "DelayedFlights.csv", h, s, quiet)
         print()
         
-    skipC2 = False
+    skipC2 = True
     if not skipC2 :
         h = "c2"
         printHostInfo(h)
@@ -419,6 +421,7 @@ def showHarshaPayloadBug():
         
 #main    
 if __name__ == "__main__" :
+    #os.environ['SSL_CERT_FILE'] = 'prgx_ca.pem'
     
     #supress printing extra information (eg: quiet supressing printing data returned 
     #by the slect query against th data set)
