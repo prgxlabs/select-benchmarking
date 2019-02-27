@@ -60,7 +60,7 @@ def getColumntHeaders(bucketName, objectName, hostName, delim=","):
     s3 = boto3.resource('s3',
                           endpoint_url=endpoint,
                           aws_access_key_id=mc.getMinioHostInfo().getAccessKey(hostName),
-                          aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName)
+                          aws_secret_access_key=mc.getMinioHostInfo().getSecretKey(hostName),verify =False
                       #    is_secure=secureFlag
                         )
     #setup object (o) based on bucketName and objectName
